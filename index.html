@@ -1,12 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DSS Enterprises, LLC | Business Consulting & Credit Education</title>
-<style>body{font-family:system-ui;margin:0;padding:2rem;}</style>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>DSS Enterprises, LLC — Business Consulting, Compliance Planning & Credit Education</title>
+  <meta name="description" content="DSS Enterprises, LLC helps entrepreneurs and organizations with strategy, operational & compliance planning, and credit education — grounded in clear documentation, ethics, and measurable outcomes." />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="DSS Enterprises, LLC" />
+  <meta property="og:description" content="Business Consulting • Operational & Compliance Planning • Credit Education" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dssenterprisesusa.llc" />
+  <meta property="og:image" content="data:image/svg+xml;utf8,
+  <svg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'>
+    <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+      <stop stop-color='%230f172a' offset='0'/><stop stop-color='%231b1b3a' offset='1'/></linearGradient></defs>
+    <rect fill='url(%23g)' width='100%' height='100%'/>
+    <text x='60' y='340' font-family='Segoe UI, Roboto, Arial' font-size='72' fill='white' font-weight='700'>DSS Enterprises, LLC</text>
+    <text x='60' y='420' font-family='Segoe UI, Roboto, Arial' font-size='36' fill='%23a3b3cf'>Business Consulting • Compliance • Credit Education</text>
+  </svg>" />
+
+  <style>
+    :root{
+      --bg:#0b1022;        /* base */
+      --bg2:#0d122a;       /* gradient mix */
+      --fg:#f8fafc;        /* text */
+      --muted:#9aa7c7;     /* secondary text */
+      --accent:#ef4444;    /* red */
+      --gold:#c58b2b;      /* gold accent */
+      --card:rgba(255,255,255,.06);
+      --stroke:rgba(255,255,255,.12);
+      --glow:0 10px 30px rgba(239,68,68,.25);
+      --radius:18px;
+    }
+
+    /* Page base */
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--fg);
+      background: radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
+                  radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
+                  linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* Animated subtle gradient shimmer */
+    .bg-anim::before{
+      content:"";
+      position:fixed; inset:-40vmax;
+      background: conic-gradient(from 120deg, rgba(197,139,43,.14), rgba(239,68,68,.08), rgba(255,255,255,.05), rgba(239,68,68,.12), rgba(197,139,43,.1));
+      filter: blur(80px);
+      animation: spin 24s linear infinite;
+      opacity:.35; pointer-events:none; z-index:-1;
+    }
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* Layout helpers */
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:50}
+    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    a{color:inherit;text-decoration:none}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 210deg,var(--gold),var(--accent));box-shadow:0 0 0 1px var(--stroke) inset}
+    .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;font-weight:600}
+    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
+    .navlinks a{border:1px solid var(--stroke);padding:8px 12px;border-radius:10px;color:var(--muted)}
+    .navlinks a:hover{color:var(--fg);border-color:rgba(255,255,255,.22)}
+
+    /* Hero */
+    .hero{padding:70px 0 40px;text-align:center}
+    .eyebrow{display:inline-block;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;color:var(--muted)}
+    .hero h1{font-size:clamp(28px,4.8vw,52px);line-height:1.12;margin:18px 0}
+    .sub{max-width:840px;margin:0 auto;color:var(--muted)}
+    .cta{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:20px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;font-weight:700}
+    .btn.primary{background:var(--accent);box-shadow:var(--glow)}
+    .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
+    .btn .dot{width:8px;height:8px;border-radius:50%;background:var(--fg);opacity:.8}
+
+    /* Section / cards */
+    section{padding:46px 0}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border:1px solid var(--stroke);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:0 12px 40px rgba(0,0,0,.25);
+    }
+
+    /* Grid */
+    .grid{display:grid;gap:18px}
+    @media(min-width:880px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
+
+    /* Feature rows */
+    .kpis{display:grid;gap:14px;grid-template-columns:repeat(3,1fr);max-width:860px;margin:16px auto 0}
+    .kpis .k{border:1px dashed var(--stroke);border-radius:12px;padding:12px;color:var(--muted);text-align:center}
+    .k strong{display:block;color:var(--fg);font-size:22px}
+
+    /* Contact */
+    .contact-grid{display:grid;gap:18px}
+    @media(min-width:860px){.contact-grid{grid-template-columns:1.2fr .8fr}}
+
+    .contact a{color:var(--fg);border-bottom:1px dotted rgba(255,255,255,.35)}
+    .muted{color:var(--muted)}
+    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+  </style>
 </head>
-<body>
-<h1>Welcome to DSS Enterprises, LLC</h1>
-<p>Business Consulting • Operational & Compliance Planning • Credit Education</p>
-<p><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a></p>
+<body class="bg-anim">
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top" aria-label="DSS Enterprises, LLC">
+          <span class="logo" aria-hidden="true"></span>
+          <b>DSS Enterprises, LLC</b>
+        </a>
+        <div class="navlinks" role="navigation" aria-label="Primary">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#contact" class="pill">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <div class="container hero">
+      <span class="eyebrow">South Florida • Nationwide Support</span>
+      <h1>Business Consulting, Operational & Compliance Planning, and Credit Education</h1>
+      <p class="sub">
+        We help founders and operators design practical strategy, tighten day-to-day execution,
+        align with legal and ethical standards, and build stronger financial habits — without the fluff.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#services"><span class="dot" aria-hidden="true"></span> Explore services</a>
+        <a class="btn ghost" href="#contact">Book a call</a>
+      </div>
+      <div class="kpis">
+        <div class="k"><strong>Strategy → SOPs</strong>Process mapping & measurable KPIs</div>
+        <div class="k"><strong>Compliance-first</strong>Documentation, policies & training</div>
+        <div class="k"><strong>Education</strong>Clear credit & budgeting fundamentals</div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <section id="services" class="reveal">
+      <div class="container">
+        <h2>What we do</h2>
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>Business Consulting & Strategy</h3>
+            <ul>
+              <li>Strategic planning & goal setting</li>
+              <li>Process mapping & SOP development</li>
+              <li>Performance dashboards & KPIs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Operational Planning & Compliance</h3>
+            <ul>
+              <li>Policy & procedure design with audits</li>
+              <li>Risk & quality assurance frameworks</li>
+              <li>Training content & implementation</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Credit Education & Financial Literacy</h3>
+            <ul>
+              <li>Consumer & small-business credit education</li>
+              <li>Budgeting & cash-flow coaching</li>
+              <li>Understanding reports & dispute education</li>
+            </ul>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:12px">
+          Educational services are not legal, tax, or financial advice. DSS Enterprises complies with applicable consumer protection laws (FTC/CROA). No guarantees of outcomes are made.
+        </p>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="reveal">
+      <div class="container">
+        <div class="card">
+          <h2>About DSS Enterprises</h2>
+          <p>
+            DSS Enterprises, LLC is led by Derek S. Steinmetz and delivers results-driven consulting rooted in integrity,
+            documentation, and practical execution. We emphasize legally sound, ethical practices across every engagement.
+          </p>
+          <p class="muted">Florida Document No. L25000152204 • Effective April 1, 2025</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="reveal">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="card contact">
+            <h2>Contact</h2>
+            <p><strong>Derek S. Steinmetz</strong> — Managing Member</p>
+            <p>
+              <a href="mailto:Derek.DSS.LLC@gmail.com">Derek.DSS.LLC@gmail.com</a><br/>
+              <a href="tel:+15618273158">561-827-3158</a>
+            </p>
+            <p class="muted">Prefer text or email to schedule a consultation. Remote and on-site options available.</p>
+          </div>
+          <div class="card">
+            <h3>Engagement approach</h3>
+            <ol>
+              <li><strong>Discovery:</strong> brief call, define outcomes</li>
+              <li><strong>Plan:</strong> scope, milestones, documentation</li>
+              <li><strong>Execute:</strong> implement SOPs, training, QA</li>
+              <li><strong>Measure:</strong> dashboards, iterate</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
+      <div style="margin-top:6px">
+        <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms of Use</a>
+      </div>
+      <p class="muted" style="margin-top:10px">
+        This website provides general educational information. It does not create a client relationship and should not be relied upon as legal, tax, or investment advice.
+      </p>
+    </div>
+  </footer>
+
+  <!-- JSON-LD (Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "DSS Enterprises, LLC",
+    "url": "https://dssenterprisesusa.llc",
+    "email": "Derek.DSS.LLC@gmail.com",
+    "telephone": "+1-561-827-3158",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Boynton Beach",
+      "addressRegion": "FL",
+      "postalCode": "33426",
+      "addressCountry": "US"
+    }
+  }
+  </script>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
 </body>
 </html>
