@@ -128,7 +128,7 @@
         <a class="btn primary"
            href="mailto:Derek@dssenterprisesusa.llc?subject=Order%20DIY%20Credit%20Education%20Toolkit&body=Hi%20DSS%2C%20I%20would%20like%20to%20order%20the%20DIY%20Credit%20Education%20Toolkit%20(%2447)."
            aria-label="Buy DIY Credit Education Toolkit">$47 — Buy now</a>
-        <a class="btn ghost" href="#credit-details-1">Learn more</a>
+        <a class="btn ghost" href="#credit-details-1" data-open="credit-details-1" aria-controls="credit-details-1">Learn more</a>
       </div>
       <details id="credit-details-1" style="margin-top:12px">
         <summary>What’s inside</summary>
@@ -150,7 +150,7 @@
         <a class="btn primary"
            href="mailto:Derek@dssenterprisesusa.llc?subject=Order%20Compliance%20Starter%20Kit&body=Hi%20DSS%2C%20I%20would%20like%20to%20order%20the%20Compliance%20Starter%20Kit%20(%2497)."
            aria-label="Buy Compliance Starter Kit">$97 — Buy now</a>
-        <a class="btn ghost" href="#compliance-details-1">Learn more</a>
+        <a class="btn ghost" href="#compliance-details-1" data-open="compliance-details-1" aria-controls="compliance-details-1">Learn more</a>
       </div>
       <details id="compliance-details-1" style="margin-top:12px">
         <summary>What’s inside</summary>
@@ -171,7 +171,7 @@
         <a class="btn primary"
            href="mailto:Derek@dssenterprisesusa.llc?subject=Order%20Small%20Business%20Financial%20Dashboard&body=Hi%20DSS%2C%20I%20would%20like%20to%20order%20the%20Small%20Business%20Financial%20Dashboard%20(%2467)."
            aria-label="Buy Small Business Financial Dashboard">$67 — Buy now</a>
-        <a class="btn ghost" href="#finance-details-1">Learn more</a>
+        <a class="btn ghost" href="#finance-details-1" data-open="finance-details-1" aria-controls="finance-details-1">Learn more</a>
       </div>
       <details id="finance-details-1" style="margin-top:12px">
         <summary>What’s inside</summary>
@@ -203,5 +203,24 @@
   </footer>
 
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+    <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Learn More auto-open script -->
+  <script>
+    document.querySelectorAll('a[data-open]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const id = link.getAttribute('data-open');
+        const target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        target.open = true;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
 </body>
 </html>
