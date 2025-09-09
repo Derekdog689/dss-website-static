@@ -17,8 +17,6 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
-  <script src="https://js.stripe.com/v3"></script>
-
   <style>
     :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--gold:#c58b2b;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--glow:0 10px 30px rgba(239,68,68,.25);--radius:18px}
     *{box-sizing:border-box} html{scroll-behavior:smooth}
@@ -37,14 +35,12 @@
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700}
     .btn.primary{background:var(--accent);box-shadow:var(--glow)}
     .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
-    .grid{display:grid;gap:18px}
-    @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}}
     .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-bottom:18px}
     .muted{color:var(--muted)}
     footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
   </style>
 </head>
-<body class="bg-anim">
+<body>
   <header>
     <div class="container">
       <nav>
@@ -63,36 +59,32 @@
     <div class="container hero">
       <a href="/products.html" class="btn ghost" style="margin-bottom:10px">← Back to Products</a>
       <h1>Compliance Starter Kit</h1>
-      <p class="lead">A practical starter pack to help owners put “minimum viable compliance” in place: sample SOPs you can adapt, an audit-readiness checklist to close gaps, and an editable SOP template so you can document how work gets done — consistently.</p>
+      <p class="lead">Sample SOPs, an audit-readiness checklist, and an editable SOP template to bootstrap good governance.</p>
       <p class="price">$97</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-       <stripe-buy-button
-  buy-button-id="price_1S5FpWCosND0U4N24QXBC48N"
-  publishable-key="pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB">
-</stripe-buy-button>
-
+        <button id="buy-compliance" class="btn primary">Buy now — $97</button>
+        <a class="btn ghost" href="/terms.html">Terms of Use</a>
       </div>
     </div>
 
     <section class="container">
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>What’s inside</h3>
-          <ul>
-            <li>Audit-readiness checklist (DOC/PDF) with key controls and evidence list</li>
-            <li>2–3 sample SOPs (DOC) for common processes (e.g., onboarding, cash handling)</li>
-            <li>Editable SOP template (DOC) — sections for purpose, scope, roles, steps, QA</li>
-            <li>Quick “policy vs. procedure” explainer and naming conventions</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Who it’s for</h3>
-          <ul>
-            <li>Small teams that need documented processes to pass vendor or partner reviews</li>
-            <li>Founders preparing for growth, hiring, or certifications</li>
-            <li>Operators who want fewer mistakes and clearer accountability</li>
-          </ul>
-        </div>
+      <div class="card">
+        <h3>What’s inside</h3>
+        <ul>
+          <li>Audit-readiness checklist (DOC/PDF) with key controls and evidence list</li>
+          <li>2–3 sample SOPs (DOC) for common processes (e.g., onboarding, cash handling)</li>
+          <li>Editable SOP template (DOC) — sections for purpose, scope, roles, steps, QA</li>
+          <li>Quick “policy vs. procedure” explainer and naming conventions</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Who it’s for</h3>
+        <ul>
+          <li>Small teams that need documented processes to pass vendor reviews</li>
+          <li>Founders preparing for growth, hiring, or certifications</li>
+          <li>Operators who want fewer mistakes and clearer accountability</li>
+        </ul>
       </div>
 
       <div class="card">
@@ -103,20 +95,6 @@
           <li><strong>Implement:</strong> review with the team; assign owners and due dates.</li>
           <li><strong>Prove:</strong> save evidence (logs, screenshots, training sign-offs) for audits.</li>
         </ol>
-        <p class="muted">Educational materials. Not legal, tax, or financial advice.</p>
-      </div>
-
-      <div class="card">
-        <h3>FAQs</h3>
-        <details><summary>How do I receive the files?</summary>
-          <p class="muted">You’ll receive download links by email (DOC/PDF) shortly after purchase.</p>
-        </details>
-        <details><summary>Are the SOPs industry-specific?</summary>
-          <p class="muted">They’re general-purpose and easy to adapt to most small operations.</p>
-        </details>
-        <details><summary>Do you provide legal policies?</summary>
-          <p class="muted">No — policies and legal review should be completed by your counsel.</p>
-        </details>
       </div>
     </section>
   </main>
@@ -125,23 +103,20 @@
     <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
   </footer>
 
+  <script src="https://js.stripe.com/v3"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const stripe = Stripe('pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB');
-    const PRICE_ID = 'price_1S5FpWCosND0U4N24QXBC48N';
-    const SUCCESS_URL = 'https://www.dssenterprisesusa.llc/products.html#thanks';
-    const CANCEL_URL  = 'https://www.dssenterprisesusa.llc/products/compliance-starter.html#canceled';
 
     document.getElementById('buy-compliance').addEventListener('click', async () => {
-      const btn = document.getElementById('buy-compliance'); btn.disabled = true;
       const { error } = await stripe.redirectToCheckout({
         mode: 'payment',
-        lineItems: [{ price: PRICE_ID, quantity: 1 }],
-        successUrl: SUCCESS_URL,
-        cancelUrl: CANCEL_URL
+        lineItems: [{ price: 'price_1S5FpWCosND0U4N24QXBC48N', quantity: 1 }],
+        successUrl: 'https://www.dssenterprisesusa.llc/products/compliance-starter.html?checkout=success',
+        cancelUrl: 'https://www.dssenterprisesusa.llc/products/compliance-starter.html?checkout=cancel'
       });
-      if (error) { alert(error.message || 'Unable to start checkout.'); btn.disabled = false; }
+      if (error) alert(error.message);
     });
   </script>
 </body>
