@@ -18,16 +18,19 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
   <style>
-    :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--gold:#c58b2b;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--glow:0 10px 30px rgba(239,68,68,.25);--radius:18px}
+    :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--stroke:rgba(255,255,255,.12);--radius:18px;--glow:0 10px 30px rgba(239,68,68,.25)}
     *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--fg);
       background:radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
                  radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
-                 linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);line-height:1.6;overflow-x:hidden}
-    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:50}
+                 linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);line-height:1.6}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:10}
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     a{color:inherit;text-decoration:none}
-    .container{max-width:1120px;margin:0 auto;padding:24px}
+    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
+    .navlinks a{border:1px solid var(--stroke);padding:8px 12px;border-radius:10px;color:var(--muted)}
+    .navlinks a:hover{color:var(--fg);border-color:rgba(255,255,255,.22)}
     .hero{padding:48px 0 8px}
     h1{font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:14px 0}
     .lead{max-width:880px;color:var(--muted)}
@@ -37,7 +40,7 @@
     .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
     .grid{display:grid;gap:18px}
     @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px}
     .muted{color:var(--muted)}
     footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
   </style>
@@ -49,7 +52,7 @@
         <a class="brand" href="/#top"><b>DSS Enterprises, LLC</b></a>
         <div class="navlinks">
           <a href="/#services">Services</a>
-          <a href="/products.html" class="pill">Products</a>
+          <a href="/products.html">Products</a>
           <a href="/#about">About</a>
           <a href="/#contact">Contact</a>
         </div>
@@ -61,7 +64,7 @@
     <div class="container hero">
       <a href="/products.html" class="btn ghost" style="margin-bottom:10px">← Back to Products</a>
       <h1>Small Business Financial Dashboard</h1>
-      <p class="lead">Excel/Google Sheets dashboard to track cashflow, use envelope budgeting, watch credit utilization, and view simple, decision-ready charts each month.</p>
+      <p class="lead">A practical Excel/Google Sheets dashboard to track cashflow, use envelope budgeting, watch credit utilization, and view simple, decision-ready charts each month.</p>
       <p class="price">$67</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button id="buy-finance" class="btn primary">Buy now — $67</button>
@@ -99,7 +102,15 @@
             <li><strong>Log activity:</strong> paste bank/CC exports or enter transactions as they occur.</li>
             <li><strong>Review:</strong> check monthly charts, category variance, and utilization; adjust envelopes for next month.</li>
           </ol>
+          <p class="muted" style="margin-top:6px">Educational materials. Not legal, tax, or financial advice.</p>
         </div>
+        <div class="card">
+          <h3>Preview</h3>
+          <div style="width:100%;aspect-ratio:16/9;border:1px solid var(--stroke);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Dashboard preview (placeholder)</div>
+        </div>
+      </div>
+
+      <div class="grid cols-2" style="margin-top:18px">
         <div class="card">
           <h3>Requirements & compatibility</h3>
           <ul>
@@ -107,6 +118,18 @@
             <li>Works on Windows/Mac and mobile Sheets app</li>
             <li>No macros, add-ins, or scripts required</li>
           </ul>
+        </div>
+        <div class="card">
+          <h3>FAQ</h3>
+          <details open><summary>How do I receive the files?</summary>
+            <p class="muted">We reply to your order email with download links (XLSX + Google Sheets). Keep the email for future access.</p>
+          </details>
+          <details><summary>Can I customize categories?</summary>
+            <p class="muted">Yes — edit the Categories tab and envelopes to fit your business.</p>
+          </details>
+          <details><summary>Do you guarantee results?</summary>
+            <p class="muted">No guarantees are made. This is an educational tool for visibility and planning.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -116,22 +139,8 @@
     <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
   </footer>
 
-  <script src="https://js.stripe.com/v3"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const stripe = Stripe('pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB');
-
-    document.getElementById('buy-finance').addEventListener('click', async () => {
-      const { error } = await stripe.redirectToCheckout({
-        mode: 'payment',
-        lineItems: [{ price: 'price_1S5Fq1CosND0U4N23Jnukoke', quantity: 1 }],
-        successUrl: 'https://www.dssenterprisesusa.llc/products/finance-dashboard.html?checkout=success',
-        cancelUrl: 'https://www.dssenterprisesusa.llc/products/finance-dashboard.html?checkout=cancel'
-      });
-      if (error) alert(error.message);
-    });
-  </script>
-  <button id="buy-finance" class="btn primary">Buy now — $67</button>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="/assets/checkout.js"></script>
 </body>
 </html>
