@@ -17,8 +17,6 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
-  <script src="https://js.stripe.com/v3"></script>
-
   <style>
     :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--gold:#c58b2b;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--glow:0 10px 30px rgba(239,68,68,.25);--radius:18px}
     *{box-sizing:border-box} html{scroll-behavior:smooth}
@@ -41,11 +39,10 @@
     @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}}
     .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-bottom:18px}
     .muted{color:var(--muted)}
-    .thumb{width:100%;aspect-ratio:16/9;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center}
     footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
   </style>
 </head>
-<body class="bg-anim">
+<body>
   <header>
     <div class="container">
       <nav>
@@ -64,18 +61,11 @@
     <div class="container hero">
       <a href="/products.html" class="btn ghost" style="margin-bottom:10px">← Back to Products</a>
       <h1>Small Business Financial Dashboard</h1>
-      <p class="lead">
-        A practical Excel/Google Sheets dashboard to track cashflow, use envelope budgeting,
-        watch credit utilization, and view simple, decision-ready charts each month.
-      </p>
+      <p class="lead">Excel/Google Sheets dashboard to track cashflow, use envelope budgeting, watch credit utilization, and view simple, decision-ready charts each month.</p>
       <p class="price">$67</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-       <stripe-buy-button
-  buy-button-id="price_1S5Fq1CosND0U4N23Jnukoke"
-  publishable-key="pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB">
-</stripe-buy-button>
->Terms of Use</a>
-        <span class="btn ghost" style="pointer-events:none;opacity:.8">Formats: Excel (.xlsx) & Google Sheets</span>
+        <button id="buy-finance" class="btn primary">Buy now — $67</button>
+        <a class="btn ghost" href="/terms.html">Terms of Use</a>
       </div>
     </div>
 
@@ -88,7 +78,7 @@
             <li>Envelope budgeting tab (set targets, track actuals)</li>
             <li>Credit utilization view (per account + overall)</li>
             <li>Charts tab (income vs. expense, category trends)</li>
-            <li>Setup &amp; usage guide (PDF)</li>
+            <li>Setup & usage guide (PDF)</li>
           </ul>
         </div>
         <div class="card">
@@ -101,43 +91,22 @@
         </div>
       </div>
 
-      <div class="grid cols-2">
+      <div class="grid cols-2" style="margin-top:18px">
         <div class="card">
           <h3>How it works (3 steps)</h3>
           <ol>
-            <li><strong>Set up:</strong> duplicate the template (Sheets) or open the Excel file; add starting balances &amp; categories.</li>
+            <li><strong>Set up:</strong> duplicate the template (Sheets) or open the Excel file; add starting balances & categories.</li>
             <li><strong>Log activity:</strong> paste bank/CC exports or enter transactions as they occur.</li>
             <li><strong>Review:</strong> check monthly charts, category variance, and utilization; adjust envelopes for next month.</li>
           </ol>
-          <p class="muted" style="margin-top:6px">Educational materials. Not legal, tax, or financial advice.</p>
         </div>
         <div class="card">
-          <h3>Preview</h3>
-          <div class="thumb"><span class="muted">Dashboard preview (placeholder)</span></div>
-          <p class="muted" style="margin-top:8px">You’ll receive both Excel and a Google Sheets link.</p>
-        </div>
-      </div>
-
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>Requirements &amp; compatibility</h3>
+          <h3>Requirements & compatibility</h3>
           <ul>
             <li>Excel 2019+ or Microsoft 365 <em>or</em> Google Sheets</li>
             <li>Works on Windows/Mac and mobile Sheets app</li>
             <li>No macros, add-ins, or scripts required</li>
           </ul>
-        </div>
-        <div class="card">
-          <h3>FAQ</h3>
-          <details open><summary>How do I receive the files?</summary>
-            <p class="muted">We reply to your order email with download links (XLSX + Google Sheets). Keep the email for future access.</p>
-          </details>
-          <details><summary>Can I customize categories?</summary>
-            <p class="muted">Yes — edit the Categories tab and envelopes to fit your business.</p>
-          </details>
-          <details><summary>Do you guarantee results?</summary>
-            <p class="muted">No guarantees are made. This is an educational tool for visibility and planning.</p>
-          </details>
         </div>
       </div>
     </section>
@@ -147,23 +116,20 @@
     <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
   </footer>
 
+  <script src="https://js.stripe.com/v3"></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const stripe = Stripe('pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB');
-    const PRICE_ID = 'price_1S5Fq1CosND0U4N23Jnukoke';
-    const SUCCESS_URL = 'https://www.dssenterprisesusa.llc/products.html#thanks';
-    const CANCEL_URL  = 'https://www.dssenterprisesusa.llc/products/finance-dashboard.html#canceled';
 
     document.getElementById('buy-finance').addEventListener('click', async () => {
-      const btn = document.getElementById('buy-finance'); btn.disabled = true;
       const { error } = await stripe.redirectToCheckout({
         mode: 'payment',
-        lineItems: [{ price: PRICE_ID, quantity: 1 }],
-        successUrl: SUCCESS_URL,
-        cancelUrl: CANCEL_URL
+        lineItems: [{ price: 'price_1S5Fq1CosND0U4N23Jnukoke', quantity: 1 }],
+        successUrl: 'https://www.dssenterprisesusa.llc/products/finance-dashboard.html?checkout=success',
+        cancelUrl: 'https://www.dssenterprisesusa.llc/products/finance-dashboard.html?checkout=cancel'
       });
-      if (error) { alert(error.message || 'Unable to start checkout.'); btn.disabled = false; }
+      if (error) alert(error.message);
     });
   </script>
 </body>
