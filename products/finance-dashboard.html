@@ -75,10 +75,15 @@
     .pillnote{display:inline-block;border:1px dashed var(--stroke);border-radius:999px;padding:6px 10px;margin-left:10px;font-size:.9rem;color:var(--muted)}
     .thumb{width:100%;aspect-ratio:16/9;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center}
   </style>
+    <!-- any JSON-LD or meta tags above -->
+
+  <!-- Stripe Buy Button script -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+</head>
+
 </head>
 <body class="bg-anim">
   <a class="sr-only focus:not-sr-only" href="#main">Skip to content</a>
-
   <header>
     <div class="container">
       <nav>
@@ -95,7 +100,6 @@
       </nav>
     </div>
   </header>
-
   <main id="main">
     <div class="container hero">
       <a href="/products.html" class="btn ghost" style="margin-bottom:10px">← Back to Products</a>
@@ -106,9 +110,12 @@
       </p>
       <p class="price">$67</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn primary"
-           href="mailto:Derek@dssenterprisesusa.llc?subject=Order%20Small%20Business%20Financial%20Dashboard&body=Hi%20DSS%2C%20I%20would%20like%20to%20order%20the%20Small%20Business%20Financial%20Dashboard%20(%2467).">Buy now — $67</a>
-        <a class="btn ghost" href="/terms.html">Terms of Use</a>
+        <!-- Stripe Buy Button -->
+<stripe-buy-button
+  buy-button-id="price_1S5Fq1CosND0U4N23Jnukoke"
+  publishable-key="price_1S5Fq1CosND0U4N23Jnukoke">
+</stripe-buy-button>
+
         <span class="pillnote">Formats: Excel (.xlsx) & Google Sheets</span>
       </div>
     </div>
@@ -180,9 +187,12 @@
       <div class="card" style="margin-top:18px;text-align:center">
         <h3>Ready to get clear on your numbers?</h3>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px">
-          <a class="btn primary"
-             href="mailto:derek@dssenterprisesusa.llc?subject=Order%20Small%20Business%20Financial%20Dashboard&body=Hi%20DSS%2C%20please%20send%20the%20Small%20Business%20Financial%20Dashboard%20(%2467).">Buy now — $67</a>
-          <a class="btn ghost" href="/products.html">Back to all products</a>
+          <!-- Stripe Buy Button -->
+<stripe-buy-button
+  buy-button-id="price_1S5Fq1CosND0U4N23Jnukoke"
+  publishable-key="price_1S5Fq1CosND0U4N23Jnukoke">
+</stripe-buy-button>
+
         </div>
       </div>
     </section>
