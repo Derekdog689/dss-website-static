@@ -7,8 +7,7 @@
   <link rel="canonical" href="https://www.dssenterprisesusa.llc/products/finance-dashboard.html" />
   <meta name="description" content="Excel/Google Sheets dashboard for cashflow, envelope budgeting, credit utilization, and clean monthly charts — built for small businesses." />
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="product" />
   <meta property="og:title" content="Small Business Financial Dashboard — DSS Enterprises, LLC" />
   <meta property="og:description" content="Spreadsheet dashboard for cashflow, envelope budgeting, credit utilization, and simple charts." />
   <meta property="og:url" content="https://www.dssenterprisesusa.llc/products/finance-dashboard.html" />
@@ -18,24 +17,7 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
-  <!-- Product JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "Small Business Financial Dashboard",
-    "brand": {"@type": "Brand","name": "DSS Enterprises"},
-    "description": "Excel/Google Sheets dashboard for cashflow, envelope budgeting, credit utilization, and clean monthly charts.",
-    "category": "FinancialSoftware",
-    "offers": {
-      "@type": "Offer",
-      "price": "67",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.dssenterprisesusa.llc/products/finance-dashboard.html"
-    }
-  }
-  </script>
+  <script src="https://js.stripe.com/v3"></script>
 
   <style>
     :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--gold:#c58b2b;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--glow:0 10px 30px rgba(239,68,68,.25);--radius:18px}
@@ -44,20 +26,11 @@
       background:radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
                  radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
                  linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);line-height:1.6;overflow-x:hidden}
-    .bg-anim::before{content:"";position:fixed;inset:-40vmax;background:conic-gradient(from 120deg,rgba(197,139,43,.14),rgba(239,68,68,.08),rgba(255,255,255,.05),rgba(239,68,68,.12),rgba(197,139,43,.1));filter:blur(80px);animation:spin 24s linear infinite;opacity:.35;pointer-events:none;z-index:-1}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .container{max-width:1120px;margin:0 auto;padding:24px}
     header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:50}
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     a{color:inherit;text-decoration:none}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 210deg,var(--gold),var(--accent));box-shadow:0 0 0 1px var(--stroke) inset}
-    .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;font-weight:600}
-    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
-    .navlinks a{border:1px solid var(--stroke);padding:8px 12px;border-radius:10px;color:var(--muted)}
-    .navlinks a:hover{color:var(--fg);border-color:rgba(255,255,255,.22)}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
     .hero{padding:48px 0 8px}
-    .eyebrow{display:inline-block;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;color:var(--muted)}
     h1{font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:14px 0}
     .lead{max-width:880px;color:var(--muted)}
     .price{font-weight:800;font-size:22px;margin:12px 0}
@@ -66,32 +39,18 @@
     .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
     .grid{display:grid;gap:18px}
     @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
-    ul{margin:0;padding-left:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-bottom:18px}
     .muted{color:var(--muted)}
-    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px}
-    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .focus\:not-sr-only:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto;white-space:normal}
-    .pillnote{display:inline-block;border:1px dashed var(--stroke);border-radius:999px;padding:6px 10px;margin-left:10px;font-size:.9rem;color:var(--muted)}
     .thumb{width:100%;aspect-ratio:16/9;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center}
+    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
   </style>
-    <!-- any JSON-LD or meta tags above -->
-
-  <!-- Stripe Buy Button script -->
-  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-</head>
-
 </head>
 <body class="bg-anim">
-  <a class="sr-only focus:not-sr-only" href="#main">Skip to content</a>
   <header>
     <div class="container">
       <nav>
-        <a class="brand" href="/#top" aria-label="DSS Enterprises, LLC">
-          <span class="logo" aria-hidden="true"></span>
-          <b>DSS Enterprises, LLC</b>
-        </a>
-        <div class="navlinks" role="navigation" aria-label="Primary">
+        <a class="brand" href="/#top"><b>DSS Enterprises, LLC</b></a>
+        <div class="navlinks">
           <a href="/#services">Services</a>
           <a href="/products.html" class="pill">Products</a>
           <a href="/#about">About</a>
@@ -100,6 +59,7 @@
       </nav>
     </div>
   </header>
+
   <main id="main">
     <div class="container hero">
       <a href="/products.html" class="btn ghost" style="margin-bottom:10px">← Back to Products</a>
@@ -110,13 +70,9 @@
       </p>
       <p class="price">$67</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <!-- Stripe Buy Button -->
-<stripe-buy-button
-  buy-button-id="price_1S5Fq1CosND0U4N23Jnukoke"
-  publishable-key="price_1S5Fq1CosND0U4N23Jnukoke">
-</stripe-buy-button>
-
-        <span class="pillnote">Formats: Excel (.xlsx) & Google Sheets</span>
+        <button id="buy-finance" class="btn primary">Buy now — $67</button>
+        <a class="btn ghost" href="/terms.html">Terms of Use</a>
+        <span class="btn ghost" style="pointer-events:none;opacity:.8">Formats: Excel (.xlsx) & Google Sheets</span>
       </div>
     </div>
 
@@ -129,7 +85,7 @@
             <li>Envelope budgeting tab (set targets, track actuals)</li>
             <li>Credit utilization view (per account + overall)</li>
             <li>Charts tab (income vs. expense, category trends)</li>
-            <li>Setup & usage guide (PDF)</li>
+            <li>Setup &amp; usage guide (PDF)</li>
           </ul>
         </div>
         <div class="card">
@@ -142,28 +98,26 @@
         </div>
       </div>
 
-      <div class="grid cols-2" style="margin-top:18px">
+      <div class="grid cols-2">
         <div class="card">
           <h3>How it works (3 steps)</h3>
           <ol>
-            <li><strong>Set up:</strong> duplicate the template (Sheets) or open the Excel file; add starting balances & categories.</li>
+            <li><strong>Set up:</strong> duplicate the template (Sheets) or open the Excel file; add starting balances &amp; categories.</li>
             <li><strong>Log activity:</strong> paste bank/CC exports or enter transactions as they occur.</li>
             <li><strong>Review:</strong> check monthly charts, category variance, and utilization; adjust envelopes for next month.</li>
           </ol>
-          <p class="muted" style="margin-top:6px">
-            Educational materials. Not legal, tax, or financial advice.
-          </p>
+          <p class="muted" style="margin-top:6px">Educational materials. Not legal, tax, or financial advice.</p>
         </div>
         <div class="card">
           <h3>Preview</h3>
-          <div class="thumb"><span class="muted">Dashboard preview (placeholders)</span></div>
+          <div class="thumb"><span class="muted">Dashboard preview (placeholder)</span></div>
           <p class="muted" style="margin-top:8px">You’ll receive both Excel and a Google Sheets link.</p>
         </div>
       </div>
 
-      <div class="grid cols-2" style="margin-top:18px">
+      <div class="grid cols-2">
         <div class="card">
-          <h3>Requirements & compatibility</h3>
+          <h3>Requirements &amp; compatibility</h3>
           <ul>
             <li>Excel 2019+ or Microsoft 365 <em>or</em> Google Sheets</li>
             <li>Works on Windows/Mac and mobile Sheets app</li>
@@ -183,30 +137,31 @@
           </details>
         </div>
       </div>
-
-      <div class="card" style="margin-top:18px;text-align:center">
-        <h3>Ready to get clear on your numbers?</h3>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px">
-          <!-- Stripe Buy Button -->
-<stripe-buy-button
-  buy-button-id="price_1S5Fq1CosND0U4N23Jnukoke"
-  publishable-key="price_1S5Fq1CosND0U4N23Jnukoke">
-</stripe-buy-button>
-
-        </div>
-      </div>
     </section>
   </main>
 
   <footer>
-    <div class="container">
-      <div>© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
-      <div style="margin-top:6px">
-        <a href="/privacy.html">Privacy Policy</a> • <a href="/terms.html">Terms of Use</a>
-      </div>
-    </div>
+    <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
   </footer>
 
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const stripe = Stripe('pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB');
+    const PRICE_ID = 'price_1S5Fq1CosND0U4N23Jnukoke';
+    const SUCCESS_URL = 'https://www.dssenterprisesusa.llc/products.html#thanks';
+    const CANCEL_URL  = 'https://www.dssenterprisesusa.llc/products/finance-dashboard.html#canceled';
+
+    document.getElementById('buy-finance').addEventListener('click', async () => {
+      const btn = document.getElementById('buy-finance'); btn.disabled = true;
+      const { error } = await stripe.redirectToCheckout({
+        mode: 'payment',
+        lineItems: [{ price: PRICE_ID, quantity: 1 }],
+        successUrl: SUCCESS_URL,
+        cancelUrl: CANCEL_URL
+      });
+      if (error) { alert(error.message || 'Unable to start checkout.'); btn.disabled = false; }
+    });
+  </script>
 </body>
 </html>
