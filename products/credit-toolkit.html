@@ -18,27 +18,8 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
-  <!-- Stripe.js (for hosted Checkout) -->
+  <!-- Stripe.js -->
   <script src="https://js.stripe.com/v3"></script>
-
-  <!-- Product JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "DIY Credit Education Toolkit",
-    "brand": {"@type": "Brand","name": "DSS Enterprises"},
-    "description": "Guide (PDF), dispute templates, report analysis worksheet, and a budget & cash-flow tracker.",
-    "category": "FinancialEducation",
-    "offers": {
-      "@type": "Offer",
-      "price": "47",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock",
-      "url": "https://www.dssenterprisesusa.llc/products/credit-toolkit.html"
-    }
-  }
-  </script>
 
   <style>
     :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--gold:#c58b2b;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--glow:0 10px 30px rgba(239,68,68,.25);--radius:18px}
@@ -55,15 +36,12 @@
     h1{font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:14px 0}
     .lead{max-width:880px;color:var(--muted)}
     .price{font-weight:800;font-size:22px;margin:12px 0}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-bottom:18px}
-    .muted{color:var(--muted)}
-    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
-
-    /* Buttons (match site style) */
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700}
     .btn.primary{background:var(--accent);box-shadow:var(--glow)}
     .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
-    .btn[disabled]{opacity:.6;pointer-events:none}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+    .muted{color:var(--muted)}
+    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
   </style>
 </head>
 <body class="bg-anim">
@@ -83,14 +61,14 @@
 
   <main id="main">
     <div class="container hero">
-      <a href="/products.html" class="btn ghost">← Back to Products</a>
+      <a href="/products.html" class="btn ghost" style="margin-bottom:10px">← Back to Products</a>
       <h1>DIY Credit Education Toolkit</h1>
       <p class="lead">A practical, step-by-step toolkit to help you dispute report errors, understand what drives your score, and build durable budgeting habits.</p>
       <p class="price">$47</p>
-
-      <!-- Stripe Checkout button -->
-      <button id="buy-credit" class="btn primary">Buy now — $47</button>
-      <a class="btn ghost" href="/terms.html" style="margin-left:10px">Terms of Use</a>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button id="buy-credit" class="btn primary">Buy now — $47</button>
+        <a class="btn ghost" href="/terms.html">Terms of Use</a>
+      </div>
     </div>
 
     <section class="container">
@@ -99,8 +77,8 @@
         <ul>
           <li>Plain-English guide (PDF): how credit works and what impacts your score</li>
           <li>Dispute letter templates (Word/Google Docs)</li>
-          <li>Report & score analysis worksheet (fillable)</li>
-          <li>Budget & cash-flow tracker (Excel/Sheets)</li>
+          <li>Report &amp; score analysis worksheet (fillable)</li>
+          <li>Budget &amp; cash-flow tracker (Excel/Sheets)</li>
         </ul>
       </div>
 
@@ -118,19 +96,19 @@
         <ol>
           <li><strong>Pull reports:</strong> from major bureaus and log key items</li>
           <li><strong>Spot issues:</strong> using the checklist</li>
-          <li><strong>Draft & send disputes:</strong> with included templates</li>
+          <li><strong>Draft &amp; send disputes:</strong> with included templates</li>
           <li><strong>Build habits:</strong> track budgets monthly</li>
         </ol>
-        <p class="muted" style="margin-top:6px">Educational materials. Not legal, tax, or financial advice.</p>
+        <p class="muted">Educational materials. Not legal, tax, or financial advice.</p>
       </div>
 
       <div class="card">
         <h3>FAQs</h3>
         <details><summary>How soon will I receive the files?</summary>
-          <p class="muted">You’ll get a reply with download links (PDF/DOCX/Sheets). Keep the email for future access.</p>
+          <p class="muted">You’ll get a reply with download links (PDF/DOCX/Sheets).</p>
         </details>
         <details><summary>Can I edit the templates?</summary>
-          <p class="muted">Yes — everything is editable so you can adapt to your situation.</p>
+          <p class="muted">Yes, all templates are fully editable.</p>
         </details>
         <details><summary>Do you guarantee a score increase?</summary>
           <p class="muted">No guarantees are made. This is an educational toolkit.</p>
@@ -144,36 +122,23 @@
   </footer>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // ===== Stripe Checkout (client-only) =====
-    // 1) Put your REAL publishable key below
-    const stripe = Stripe(pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB); // <-- replace
-
-    // 2) Price ID for this product (already your value)
+    // Stripe Checkout
+    const stripe = Stripe('pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB');
     const PRICE_ID = 'price_1S5FdiCosND0U4N2igcaeKUr';
-
-    // 3) Success/Cancel URLs (feel free to adjust)
     const SUCCESS_URL = 'https://www.dssenterprisesusa.llc/products.html#thanks';
     const CANCEL_URL  = 'https://www.dssenterprisesusa.llc/products/credit-toolkit.html#canceled';
 
     document.getElementById('buy-credit').addEventListener('click', async () => {
-      // Disable the button briefly to prevent double-clicks
-      const btn = document.getElementById('buy-credit');
-      btn.disabled = true;
-
+      const btn = document.getElementById('buy-credit'); btn.disabled = true;
       const { error } = await stripe.redirectToCheckout({
         mode: 'payment',
         lineItems: [{ price: PRICE_ID, quantity: 1 }],
         successUrl: SUCCESS_URL,
         cancelUrl: CANCEL_URL
       });
-
-      if (error) {
-        alert(error.message || 'Something went wrong starting checkout.');
-        btn.disabled = false;
-      }
+      if (error) { alert(error.message || 'Unable to start checkout.'); btn.disabled = false; }
     });
   </script>
 </body>
