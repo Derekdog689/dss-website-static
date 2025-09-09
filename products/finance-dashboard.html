@@ -7,6 +7,7 @@
   <link rel="canonical" href="https://www.dssenterprisesusa.llc/products/finance-dashboard.html" />
   <meta name="description" content="Excel/Google Sheets dashboard for cashflow, envelope budgeting, credit utilization, and clean monthly charts — built for small businesses." />
 
+  <!-- Open Graph / Twitter -->
   <meta property="og:type" content="product" />
   <meta property="og:title" content="Small Business Financial Dashboard — DSS Enterprises, LLC" />
   <meta property="og:description" content="Spreadsheet dashboard for cashflow, envelope budgeting, credit utilization, and simple charts." />
@@ -18,16 +19,19 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
   <style>
-    :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--stroke:rgba(255,255,255,.12);--radius:18px;--glow:0 10px 30px rgba(239,68,68,.25)}
+    :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--gold:#c58b2b;--card:rgba(255,255,255,.06);--stroke:rgba(255,255,255,.12);--glow:0 10px 30px rgba(239,68,68,.25);--radius:18px}
     *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--fg);
       background:radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
                  radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
-                 linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);line-height:1.6}
+                 linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);line-height:1.6;overflow-x:hidden}
     .container{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:10}
+    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:50}
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     a{color:inherit;text-decoration:none}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 210deg,var(--gold),var(--accent));box-shadow:0 0 0 1px var(--stroke) inset}
+    .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;font-weight:600}
     .navlinks{display:flex;gap:10px;flex-wrap:wrap}
     .navlinks a{border:1px solid var(--stroke);padding:8px 12px;border-radius:10px;color:var(--muted)}
     .navlinks a:hover{color:var(--fg);border-color:rgba(255,255,255,.22)}
@@ -40,19 +44,23 @@
     .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
     .grid{display:grid;gap:18px}
     @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+    ul{margin:0;padding-left:18px}
     .muted{color:var(--muted)}
-    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
+    .thumb{width:100%;aspect-ratio:16/9;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center}
+    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px}
   </style>
 </head>
 <body>
   <header>
     <div class="container">
       <nav>
-        <a class="brand" href="/#top"><b>DSS Enterprises, LLC</b></a>
-        <div class="navlinks">
+        <a class="brand" href="/#top" aria-label="DSS Enterprises, LLC">
+          <span class="logo" aria-hidden="true"></span><b>DSS Enterprises, LLC</b>
+        </a>
+        <div class="navlinks" role="navigation" aria-label="Primary">
           <a href="/#services">Services</a>
-          <a href="/products.html">Products</a>
+          <a href="/products.html" class="pill">Products</a>
           <a href="/#about">About</a>
           <a href="/#contact">Contact</a>
         </div>
@@ -106,7 +114,8 @@
         </div>
         <div class="card">
           <h3>Preview</h3>
-          <div style="width:100%;aspect-ratio:16/9;border:1px solid var(--stroke);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--muted)">Dashboard preview (placeholder)</div>
+          <div class="thumb"><span class="muted">Dashboard preview (placeholders)</span></div>
+          <p class="muted" style="margin-top:8px">You’ll receive both Excel and a Google Sheets link.</p>
         </div>
       </div>
 
@@ -134,14 +143,14 @@
       </div>
     </section>
   </main>
-<script src="https://js.stripe.com/v3"></script>
-<script src="/assets/checkout.js?v=2"></script>
+
   <footer>
     <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
   </footer>
 
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="https://js.stripe.com/v3/"></script>
-  <script src="/assets/checkout.js"></script>
+  <!-- scripts: year + Stripe -->
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <script src="https://js.stripe.com/v3"></script>
+  <script src="/assets/checkout.js?v=2"></script>
 </body>
 </html>
