@@ -1,12 +1,15 @@
-[build]
-  publish = "."
-  # command = ""  # optional for a static site
-
+# netlify.toml
 [[headers]]
-  for = "/*"
+for = "/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'self'; img-src 'self' data: https:; font-src 'self'; script-src 'self' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.google-analytics.com"
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+  Content-Security-Policy = """
+  default-src 'self';
+  script-src 'self' https://js.stripe.com;
+  connect-src 'self' https://api.stripe.com;
+  frame-src https://js.stripe.com https://hooks.stripe.com;
+  img-src 'self' data: https:;
+  style-src 'self' 'unsafe-inline';
+  base-uri 'self';
+  form-action 'self';
+  upgrade-insecure-requests;
+  """
