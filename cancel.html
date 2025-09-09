@@ -2,65 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Checkout canceled — DSS Enterprises, LLC</title>
-  <meta name="robots" content="noindex">
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout Canceled — DSS Enterprises, LLC</title>
+  <meta name="description" content="Your checkout was canceled. You have not been charged." />
+  <link rel="canonical" href="https://www.dssenterprisesusa.llc/cancel.html" />
+
+  <!-- Favicons (optional if you’ve added them) -->
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="/assets/brand/favicon-16.png" sizes="16x16" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" sizes="180x180" />
+
   <style>
-    :root{--bg:#0b1022;--bg2:#0d122a;--fg:#f8fafc;--muted:#9aa7c7;--accent:#ef4444;--stroke:rgba(255,255,255,.12);--card:rgba(255,255,255,.06);--radius:18px}
-    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--fg);
-      background:radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
-                 radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
-                 linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%); line-height:1.6}
-    .container{max-width:960px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke)}
+    :root{
+      --bg:#0b1022; --bg2:#0d122a; --fg:#f8fafc; --muted:#9aa7c7;
+      --accent:#14b8a6; --accent-2:#0ea5a3; --gold:#c58b2b;
+      --card:rgba(255,255,255,.06); --stroke:rgba(255,255,255,.12);
+      --glow:0 10px 30px rgba(20,184,166,.28); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--fg);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
+        radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      line-height:1.6; overflow-x:hidden;
+    }
+    .container{max-width:880px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:50}
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     a{color:inherit;text-decoration:none}
-    .pill{display:inline-flex;gap:10px;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;color:var(--muted)}
-    .hero{padding:56px 0 18px}
-    h1{font-size:clamp(28px,4.2vw,46px);margin:0 0 8px}
-    .lead{color:var(--muted);max-width:760px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-top:18px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700}
-    .btn.primary{background:var(--accent)}
-    .btn.ghost{border:1px solid var(--stroke)}
-    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700;transition:all .15s ease}
+    .btn.primary{background:var(--accent);box-shadow:var(--glow);border:1px solid rgba(255,255,255,.06)}
+    .btn.primary:hover{filter:brightness(1.06);transform:translateY(-1px)}
+    .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
+    .btn.ghost:hover{border-color:rgba(197,139,43,.45)}
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border:1px solid var(--stroke); border-radius:var(--radius); padding:22px;
+      box-shadow:0 12px 40px rgba(0,0,0,.25);
+    }
+    h1{font-size:clamp(28px,4.4vw,46px);line-height:1.15;margin:16px 0}
+    .muted{color:var(--muted)}
+    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
   </style>
 </head>
 <body>
   <header>
     <div class="container">
       <nav>
-        <a href="/#top"><b>DSS Enterprises, LLC</b></a>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a class="pill" href="/products.html">Products</a>
-          <a class="pill" href="/#contact">Contact</a>
+        <a href="/#top" aria-label="DSS Enterprises, LLC" style="display:flex;align-items:center;gap:12px">
+          <img src="/assets/brand/dss-header-logo.png" alt="DSS Enterprises, LLC" style="height:36px;border-radius:8px" />
+        </a>
+        <div style="display:flex;gap:10px">
+          <a class="btn ghost" href="/products.html">Products</a>
+          <a class="btn ghost" href="/#contact">Contact</a>
         </div>
       </nav>
     </div>
   </header>
 
-  <main class="container hero">
-    <h1>Checkout canceled</h1>
-    <p class="lead">No charges were made. You can safely close this page or continue shopping below.</p>
-
+  <main class="container" style="padding:46px 24px">
     <div class="card">
-      <h3>What next?</h3>
-      <ul>
-        <li>Changed your mind? You can return to the product page and try again.</li>
-        <li>Questions before purchasing? <a href="/#contact">Contact support</a> and we’ll help.</li>
-      </ul>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+      <h1>Checkout canceled</h1>
+      <p class="muted">
+        You were not charged. If you closed the window by mistake or want to try again,
+        you can restart your purchase below.
+      </p>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px">
         <a class="btn primary" href="/products.html">Back to Products</a>
-        <a class="btn ghost" href="/privacy.html">Privacy Policy</a>
-        <a class="btn ghost" href="/terms.html">Terms</a>
+        <a class="btn ghost" href="/">Go to Home</a>
       </div>
+
+      <p class="muted" style="margin-top:18px">
+        Need help? Email <a href="mailto:Derek@dssenterprisesusa.llc" style="color:inherit;border-bottom:1px dotted rgba(255,255,255,.35)">Derek@dssenterprisesusa.llc</a> or call <a href="tel:+15612239160" style="color:inherit;border-bottom:1px dotted rgba(255,255,255,.35)">561-223-9160</a>.
+      </p>
     </div>
   </main>
 
   <footer>
-    <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
+    <div class="container">
+      © <span id="year"></span> DSS Enterprises, LLC • All rights reserved.
+    </div>
   </footer>
   <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
 </body>
