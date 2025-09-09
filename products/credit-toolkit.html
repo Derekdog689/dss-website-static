@@ -25,10 +25,16 @@
       background:radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
                  radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
                  linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);line-height:1.6;overflow-x:hidden}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
     header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:50}
     nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     a{color:inherit;text-decoration:none}
-    .container{max-width:1120px;margin:0 auto;padding:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 210deg,var(--gold),var(--accent));box-shadow:0 0 0 1px var(--stroke) inset}
+    .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;font-weight:600}
+    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
+    .navlinks a{border:1px solid var(--stroke);padding:8px 12px;border-radius:10px;color:var(--muted)}
+    .navlinks a:hover{color:var(--fg);border-color:rgba(255,255,255,.22)}
     .hero{padding:48px 0 8px}
     h1{font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:14px 0}
     .lead{max-width:880px;color:var(--muted)}
@@ -36,17 +42,22 @@
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700}
     .btn.primary{background:var(--accent);box-shadow:var(--glow)}
     .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;margin-bottom:18px}
+    .grid{display:grid;gap:18px}
+    @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
+    ul{margin:0;padding-left:18px}
     .muted{color:var(--muted)}
-    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
+    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px}
   </style>
 </head>
 <body>
   <header>
     <div class="container">
       <nav>
-        <a class="brand" href="/#top"><b>DSS Enterprises, LLC</b></a>
-        <div class="navlinks">
+        <a class="brand" href="/#top" aria-label="DSS Enterprises, LLC">
+          <span class="logo" aria-hidden="true"></span><b>DSS Enterprises, LLC</b>
+        </a>
+        <div class="navlinks" role="navigation" aria-label="Primary">
           <a href="/#services">Services</a>
           <a href="/products.html" class="pill">Products</a>
           <a href="/#about">About</a>
@@ -69,42 +80,44 @@
     </div>
 
     <section class="container">
-      <div class="card">
-        <h3>What’s inside</h3>
-        <ul>
-          <li>Plain-English guide (PDF): how credit works and what impacts your score</li>
-          <li>Dispute letter templates (Word/Google Docs)</li>
-          <li>Report & score analysis worksheet (fillable)</li>
-          <li>Budget & cash-flow tracker (Excel/Sheets)</li>
-        </ul>
+      <div class="grid cols-2">
+        <div class="card">
+          <h3>What’s inside</h3>
+          <ul>
+            <li>Plain-English guide (PDF): how credit works and what impacts your score</li>
+            <li>Dispute letter templates (Word/Google Docs)</li>
+            <li>Report & score analysis worksheet (fillable)</li>
+            <li>Budget & cash-flow tracker (Excel/Sheets)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Who it’s for</h3>
+          <ul>
+            <li>Consumers who found errors or outdated items on their reports</li>
+            <li>People rebuilding credit with a clear, ethical plan</li>
+            <li>New borrowers who want to avoid common pitfalls</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="card">
-        <h3>Who it’s for</h3>
-        <ul>
-          <li>Consumers who found errors or outdated items on their reports</li>
-          <li>People rebuilding credit with a clear, ethical plan</li>
-          <li>New borrowers who want to avoid common pitfalls</li>
-        </ul>
-      </div>
-
-      <div class="card">
+      <div class="card" style="margin-top:18px">
         <h3>How it works (4-step flow)</h3>
         <ol>
-          <li><strong>Pull reports:</strong> from major bureaus and log key items</li>
-          <li><strong>Spot issues:</strong> using the checklist</li>
-          <li><strong>Draft & send disputes:</strong> with included templates</li>
-          <li><strong>Build habits:</strong> track budgets monthly</li>
+          <li><strong>Pull reports:</strong> from major bureaus and log key items.</li>
+          <li><strong>Spot issues:</strong> inaccuracies/duplicates/outdated info using the checklist.</li>
+          <li><strong>Draft & send disputes:</strong> with the included templates; track responses.</li>
+          <li><strong>Build habits:</strong> track budget & utilization monthly.</li>
         </ol>
+        <p class="muted" style="margin-top:6px">Educational materials. Not legal, tax, or financial advice.</p>
       </div>
 
-      <div class="card">
+      <div class="card" style="margin-top:18px">
         <h3>FAQs</h3>
         <details><summary>How soon will I receive the files?</summary>
-          <p class="muted">You’ll get a reply with download links (PDF/DOCX/Sheets).</p>
+          <p class="muted">You’ll get a reply to your order email with download links (PDF/DOCX/Sheets).</p>
         </details>
         <details><summary>Can I edit the templates?</summary>
-          <p class="muted">Yes, all templates are fully editable.</p>
+          <p class="muted">Yes — all templates are fully editable.</p>
         </details>
         <details><summary>Do you guarantee a score increase?</summary>
           <p class="muted">No guarantees are made. This is an educational toolkit.</p>
@@ -112,29 +125,14 @@
       </div>
     </section>
   </main>
-<script src="https://js.stripe.com/v3"></script>
-<script src="/assets/checkout.js?v=2"></script>
+
   <footer>
     <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
   </footer>
 
-  <!-- Stripe.js -->
+  <!-- scripts: year + Stripe -->
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
   <script src="https://js.stripe.com/v3"></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    const stripe = Stripe('pk_live_51S5FCyCosND0U4N2GHkoSCSG6GtuvodFhmLiZu0d3uJRAkFTW5jBTkWJsid7FjGUcQcoIvEm0VrtAREjCIqL1T2900ttQ8reXB');
-
-    document.getElementById('buy-credit').addEventListener('click', async () => {
-      const { error } = await stripe.redirectToCheckout({
-        mode: 'payment',
-        lineItems: [{ price: 'price_1S5FdiCosND0U4N2igcaeKUr', quantity: 1 }],
-        successUrl: 'https://www.dssenterprisesusa.llc/products/credit-toolkit.html?checkout=success',
-        cancelUrl: 'https://www.dssenterprisesusa.llc/products/credit-toolkit.html?checkout=cancel'
-      });
-      if (error) alert(error.message);
-    });
-  </script>
-  <button id="buy-credit" class="btn primary">Buy now — $47</button>
+  <script src="/assets/checkout.js?v=2"></script>
 </body>
 </html>
