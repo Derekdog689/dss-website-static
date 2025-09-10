@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Small Business Financial Dashboard — DSS Enterprises, LLC</title>
+  <title>Small Business Finance Dashboard — DSS Enterprises, LLC</title>
   <link rel="canonical" href="https://www.dssenterprisesusa.llc/products/finance-dashboard.html" />
-  <meta name="description" content="Excel/Google Sheets dashboard for cashflow, envelope budgeting, credit utilization, and clean monthly charts — built for small businesses." />
+  <meta name="description" content="Track cash flow, calculate margins, and project runway with a dynamic spreadsheet dashboard designed for small businesses." />
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="product" />
-  <meta property="og:title" content="Small Business Financial Dashboard — DSS Enterprises, LLC" />
-  <meta property="og:description" content="Spreadsheet dashboard for cashflow, envelope budgeting, credit utilization, and simple charts." />
+  <meta property="og:title" content="Small Business Finance Dashboard — DSS Enterprises, LLC" />
+  <meta property="og:description" content="Track cash flow, calculate margins, and project runway with a dynamic spreadsheet dashboard." />
   <meta property="og:url" content="https://www.dssenterprisesusa.llc/products/finance-dashboard.html" />
   <meta property="og:image" content="/og-cover.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -18,62 +18,134 @@
   <link rel="icon" href="/favicon.ico" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 
+  <script src="https://js.stripe.com/v3"></script>
+  <script src="/assets/checkout.js?v=2"></script>
+
   <style>
-    :root{
-  --bg:#0b1022; 
-  --bg2:#0d122a; 
-  --fg:#f8fafc; 
-  --muted:#9aa7c7;
+    :root {
+      --bg: #0b1022;
+      --bg2: #0d122a;
+      --fg: #f8fafc;
+      --muted: #9aa7c7;
+      --accent: #14b8a6;
+      --gold: #c58b2b;
+      --card: rgba(255, 255, 255, 0.06);
+      --stroke: rgba(255, 255, 255, 0.12);
+      --glow: 0 10px 30px rgba(20, 184, 166, 0.25);
+      --radius: 18px;
+    }
 
-  /* NEW brand colors */
-  --accent:#14b8a6;                /* teal (primary CTAs) */
-  --accent-2:#0ea5a3;              /* darker teal for hover/depth */
-  --gold:#c58b2b;                  /* premium accent */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
+        radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      color: var(--fg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-  --card:rgba(255,255,255,.06);
-  --stroke:rgba(255,255,255,.12);
-  --glow:0 10px 30px rgba(20,184,166,.28);  /* teal glow */
-  --radius:18px;
-}
-    *{box-sizing:border-box} html{scroll-behavior:smooth}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--fg);
-      background:radial-gradient(1200px 600px at 20% -10%, #1a2455 0%, transparent 60%),
-                 radial-gradient(900px 500px at 100% 10%, #1a1941 0%, transparent 55%),
-                 linear-gradient(180deg,var(--bg) 0%, var(--bg2) 100%);line-height:1.6;overflow-x:hidden}
-    .container{max-width:1120px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;background:rgba(11,16,34,.6);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke);z-index:50}
-    nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    a{color:inherit;text-decoration:none}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 210deg,var(--gold),var(--accent));box-shadow:0 0 0 1px var(--stroke) inset}
-    .pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--stroke);border-radius:999px;padding:8px 14px;font-weight:600}
-    .navlinks{display:flex;gap:10px;flex-wrap:wrap}
-    .navlinks a{border:1px solid var(--stroke);padding:8px 12px;border-radius:10px;color:var(--muted)}
-    .navlinks a:hover{color:var(--fg);border-color:rgba(255,255,255,.22)}
-    .hero{padding:48px 0 8px}
-    h1{font-size:clamp(28px,4.6vw,48px);line-height:1.12;margin:14px 0}
-    .lead{max-width:880px;color:var(--muted)}
-    .price{font-weight:800;font-size:22px;margin:12px 0}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;font-weight:700}
-    .btn.primary{background:var(--accent);box-shadow:var(--glow)}
-    .btn.ghost{border:1px solid var(--stroke);color:var(--fg)}
-    .grid{display:grid;gap:18px}
-    @media(min-width:860px){.grid.cols-2{grid-template-columns:1fr 1fr}}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.04));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:0 12px 40px rgba(0,0,0,.25)}
-    ul{margin:0;padding-left:18px}
-    .muted{color:var(--muted)}
-    .thumb{width:100%;aspect-ratio:16/9;border-radius:14px;border:1px solid var(--stroke);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center}
-    footer{border-top:1px dashed var(--stroke);margin-top:24px;padding:26px 0;color:var(--muted);font-size:14px}
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(11, 16, 34, 0.6);
+      backdrop-filter: saturate(140%) blur(8px);
+      border-bottom: 1px solid var(--stroke);
+      z-index: 50;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 24px; }
+    .hero { padding: 48px 0 8px; text-align: left; }
+    h1 { font-size: clamp(28px, 4.6vw, 48px); line-height: 1.12; margin: 14px 0; }
+    .lead { max-width: 880px; color: var(--muted); }
+    .price { font-weight: 800; font-size: 22px; margin: 12px 0; }
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.04));
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+    .muted { color: var(--muted); }
+    footer {
+      border-top: 1px dashed var(--stroke);
+      margin-top: 24px;
+      padding: 26px 0;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* Buttons and hover effects */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+    .btn.primary {
+      background: var(--accent);
+      box-shadow: var(--glow);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .btn.primary:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+    .btn.primary:focus {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .btn.ghost {
+      border: 1px solid var(--stroke);
+      color: var(--fg);
+    }
+    .btn.ghost:hover {
+      border-color: rgba(197, 139, 43, 0.45);
+    }
+    .navlinks a {
+      border: 1px solid var(--stroke);
+      padding: 8px 12px;
+      border-radius: 10px;
+      color: var(--muted);
+    }
+    .navlinks a:hover {
+      color: var(--fg);
+      border-color: rgba(197, 139, 43, 0.45);
+    }
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid var(--stroke);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: var(--muted);
+    }
+    .eyebrow:hover {
+      border-color: rgba(197, 139, 43, 0.45);
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="container">
       <nav>
-        <a class="brand" href="/#top" aria-label="DSS Enterprises, LLC">
-          <span class="logo" aria-hidden="true"></span><b>DSS Enterprises, LLC</b>
-        </a>
-        <div class="navlinks" role="navigation" aria-label="Primary">
+        <a class="brand" href="/#top"><b>DSS Enterprises, LLC</b></a>
+        <div class="navlinks">
           <a href="/#services">Services</a>
           <a href="/products.html" class="pill">Products</a>
           <a href="/#about">About</a>
@@ -85,87 +157,70 @@
 
   <main id="main">
     <div class="container hero">
-      <a href="/products.html" class="btn ghost" style="margin-bottom:10px">← Back to Products</a>
-      <h1>Small Business Financial Dashboard</h1>
-      <p class="lead">A practical Excel/Google Sheets dashboard to track cashflow, use envelope budgeting, watch credit utilization, and view simple, decision-ready charts each month.</p>
-      <p class="price">$67</p>
+      <a href="/products.html" class="btn ghost">← Back to Products</a>
+      <h1>Small Business Finance Dashboard</h1>
+      <p class="lead">Track cash flow, calculate margins, and project runway with a dynamic spreadsheet dashboard designed for small businesses and solo founders.</p>
+      <p class="price">$47</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button id="buy-finance" class="btn primary">Buy now — $67</button>
+        <button id="buy-finance" class="btn primary">Buy now — $47</button>
         <a class="btn ghost" href="/terms.html">Terms of Use</a>
       </div>
     </div>
 
     <section class="container">
-      <div class="grid cols-2">
-        <div class="card">
-          <h3>What’s inside</h3>
-          <ul>
-            <li>Cashflow register with month/quarter summaries</li>
-            <li>Envelope budgeting tab (set targets, track actuals)</li>
-            <li>Credit utilization view (per account + overall)</li>
-            <li>Charts tab (income vs. expense, category trends)</li>
-            <li>Setup & usage guide (PDF)</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Who it’s for</h3>
-          <ul>
-            <li>Owners who want clarity on cash-in, cash-out, and runway</li>
-            <li>Solo/very small teams that prefer spreadsheets over apps</li>
-            <li>Anyone needing a simple, no-fluff dashboard to review monthly</li>
-          </ul>
-        </div>
+      <div class="card">
+        <h3>What’s inside</h3>
+        <ul>
+          <li>Interactive spreadsheet for revenue, expenses, and runway</li>
+          <li>Dynamic cash flow tracking & burn rate indicators</li>
+          <li>Margin calculator + monthly & annual summaries</li>
+          <li>Visual dashboard (auto-updating charts & KPIs)</li>
+        </ul>
       </div>
 
-      <div class="grid cols-2" style="margin-top:18px">
-        <div class="card">
-          <h3>How it works (3 steps)</h3>
-          <ol>
-            <li><strong>Set up:</strong> duplicate the template (Sheets) or open the Excel file; add starting balances & categories.</li>
-            <li><strong>Log activity:</strong> paste bank/CC exports or enter transactions as they occur.</li>
-            <li><strong>Review:</strong> check monthly charts, category variance, and utilization; adjust envelopes for next month.</li>
-          </ol>
-          <p class="muted" style="margin-top:6px">Educational materials. Not legal, tax, or financial advice.</p>
-        </div>
-        <div class="card">
-          <h3>Preview</h3>
-          <div class="thumb"><span class="muted">Dashboard preview (placeholders)</span></div>
-          <p class="muted" style="margin-top:8px">You’ll receive both Excel and a Google Sheets link.</p>
-        </div>
+      <div class="card">
+        <h3>Who it’s for</h3>
+        <ul>
+          <li>Sole proprietors and LLCs needing visibility into their finances</li>
+          <li>Founders preparing for early-stage funding or bootstrapping</li>
+          <li>Freelancers and operators tired of spreadsheets that don’t help</li>
+        </ul>
       </div>
 
-      <div class="grid cols-2" style="margin-top:18px">
-        <div class="card">
-          <h3>Requirements & compatibility</h3>
-          <ul>
-            <li>Excel 2019+ or Microsoft 365 <em>or</em> Google Sheets</li>
-            <li>Works on Windows/Mac and mobile Sheets app</li>
-            <li>No macros, add-ins, or scripts required</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>FAQ</h3>
-          <details open><summary>How do I receive the files?</summary>
-            <p class="muted">We reply to your order email with download links (XLSX + Google Sheets). Keep the email for future access.</p>
-          </details>
-          <details><summary>Can I customize categories?</summary>
-            <p class="muted">Yes — edit the Categories tab and envelopes to fit your business.</p>
-          </details>
-          <details><summary>Do you guarantee results?</summary>
-            <p class="muted">No guarantees are made. This is an educational tool for visibility and planning.</p>
-          </details>
-        </div>
+      <div class="card">
+        <h3>How it works (5-step flow)</h3>
+        <ol>
+          <li><strong>Enter revenue & expense categories:</strong> customize to your biz</li>
+          <li><strong>Track monthly inflow/outflow:</strong> cash vs. profit view</li>
+          <li><strong>Use KPI dashboard:</strong> live margin, burn, and runway visibility</li>
+          <li><strong>Scenario plan:</strong> test pricing, expenses, or hiring changes</li>
+          <li><strong>Download as Excel or use in Google Sheets</strong></li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>FAQs</h3>
+        <details><summary>What format is the dashboard?</summary>
+          <p class="muted">Delivered in both Excel (.xlsx) and Google Sheets formats.</p>
+        </details>
+        <details><summary>Can I modify it?</summary>
+          <p class="muted">Yes! Fully editable and customizable. No locked formulas.</p>
+        </details>
+        <details><summary>Will I get updates?</summary>
+          <p class="muted">Yes, all customers get updates by email when we improve the template.</p>
+        </details>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">© <span id="year"></span> DSS Enterprises, LLC. All rights reserved.</div>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
   </footer>
-
-  <!-- scripts: year + Stripe -->
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
-  <script src="https://js.stripe.com/v3"></script>
-  <script src="/assets/checkout.js?v=2"></script>
+  <script>
+    document.getElementById('buy-finance').addEventListener('click', function () {
+      redirectToCheckout('price_1S5Fq1CosND0U4N23Jnukoke');
+    });
+  </script>
 </body>
 </html>
